@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7ABB8119-E8DF-4B3E-AFA3-15E72296DB05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libAPNs", "libAPNs\libAPNs.csproj", "{8C4FFD05-2216-406F-9505-8B37EC3595DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libAPNs.Test.Unit", "libAPNs.Test.Unit\libAPNs.Test.Unit.csproj", "{BF2BDF92-9AC1-4E04-8E8D-E6AAEA22C42C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C4FFD05-2216-406F-9505-8B37EC3595DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C4FFD05-2216-406F-9505-8B37EC3595DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C4FFD05-2216-406F-9505-8B37EC3595DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C4FFD05-2216-406F-9505-8B37EC3595DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF2BDF92-9AC1-4E04-8E8D-E6AAEA22C42C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF2BDF92-9AC1-4E04-8E8D-E6AAEA22C42C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF2BDF92-9AC1-4E04-8E8D-E6AAEA22C42C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF2BDF92-9AC1-4E04-8E8D-E6AAEA22C42C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
