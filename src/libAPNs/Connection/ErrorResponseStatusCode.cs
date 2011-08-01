@@ -17,14 +17,31 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-namespace libAPNs
+namespace libAPNs.Connection
 {
-    using Connection;
-    using Notifications;
-
-    public interface IAPNS
+    /// <summary>
+    /// Codes in error-response packet
+    /// </summary>
+    public enum ErrorResponseStatusCode : byte
     {
-        void SendSimpleNotification(ISimpleNotification simpleNotification);
-        IErrorResponse SendEnhancedNotification(IEnhancedNotification enhancedNotification);
+        NoErrors = 0x00,
+
+        ProcessingError = 0x01,
+
+        MissingDeviceToken = 0x02,
+
+        MissingTopic = 0x03,
+
+        MissingPayload = 0x04,
+
+        InvalidTokenSize = 0x05,
+
+        InvalidTopicSize = 0x06,
+
+        InvalidPayloadSize = 0x07,
+
+        InvalidToken = 0x08,
+
+        Unknown = 0xff
     }
 }

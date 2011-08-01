@@ -35,6 +35,7 @@ namespace libAPNs.Connection
         protected X509Certificate2 certificate;
 
         protected string host;
+        protected int port = PORT;
         private SslStream sslStream;
         private TcpClient tcpClient;
 
@@ -45,16 +46,35 @@ namespace libAPNs.Connection
             this.certificate = certificate;
         }
 
+        public bool CanRead
+        {
+            get { return this.sslStream.CanRead; }
+        }
+
         public void Connect()
         {
-            this.tcpClient = new TcpClient(this.host, PORT);
+            this.tcpClient = new TcpClient(this.host, this.port);
             this.sslStream = new SslStream(
                 this.tcpClient.GetStream(),
                 false,
                 ValidateServerCertificate,
                 null);
             var certificatesCollection = new X509Certificate2Collection(this.certificate);
-            this.sslStream.AuthenticateAsClient(this.host, certificatesCollection, SslProtocols.Tls, false);
+            try
+            {
+                this.sslStream.AuthenticateAsClient(this.host, certificatesCollection, SslProtocols.Tls, false);
+
+            }
+            catch (AuthenticationException ex)
+            {
+                throw new NotificationException("Failed to authenticate", ex);
+                
+            }
+            
+            if (!this.sslStream.IsMutuallyAuthenticated)
+            {
+                throw new NotificationException("Failed to authenticate");
+            }
         }
 
         public void Disconnect()
@@ -63,6 +83,16 @@ namespace libAPNs.Connection
             {
                 this.tcpClient.Close();
             }
+        }
+
+        public int Read(byte[] buffer, int offset, int count)
+        {
+            return this.sslStream.Read(buffer, offset, count);
+        }
+
+        public int ReadByte()
+        {
+            return this.sslStream.ReadByte();
         }
 
         public void Write(byte[] data)

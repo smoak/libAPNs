@@ -17,14 +17,27 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-namespace libAPNs
+namespace libAPNs.Connection
 {
-    using Connection;
-    using Notifications;
-
-    public interface IAPNS
+    public class ErrorResponse : IErrorResponse
     {
-        void SendSimpleNotification(ISimpleNotification simpleNotification);
-        IErrorResponse SendEnhancedNotification(IEnhancedNotification enhancedNotification);
+        private readonly int identifier;
+        private readonly ErrorResponseStatusCode statusCode;
+
+        public ErrorResponse(int identifier, ErrorResponseStatusCode statusCode)
+        {
+            this.identifier = identifier;
+            this.statusCode = statusCode;
+        }
+
+        public int Identifier
+        {
+            get { return this.identifier; }
+        }
+
+        public ErrorResponseStatusCode StatusCode
+        {
+            get { return this.statusCode; }
+        }
     }
 }

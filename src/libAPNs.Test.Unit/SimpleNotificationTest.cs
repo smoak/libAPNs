@@ -20,6 +20,7 @@
 namespace libAPNs.Test.Unit
 {
     using System;
+    using Notifications;
     using NUnit.Framework;
 
     /// <summary>

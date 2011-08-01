@@ -45,19 +45,33 @@
   <ItemGroup>
     <Compile Include="APNS.cs" />
     <Compile Include="Connection\APNSConnection.cs" />
+    <Compile Include="Connection\ErrorResponse.cs" />
+    <Compile Include="Connection\GatewayFeedbackConnection.cs" />
+    <Compile Include="Connection\IErrorResponse.cs" />
+    <Compile Include="Connection\SandboxFeedbackConnection.cs" />
     <Compile Include="DeviceToken.cs" />
     <Compile Include="Connection\GatewayConnection.cs" />
     <Compile Include="Exceptions\APNSCertificateException.cs" />
+    <Compile Include="Exceptions\NotificationException.cs" />
+    <Compile Include="Feedback\FeedbackService.cs" />
+    <Compile Include="Feedback\FeedbackTuple.cs" />
+    <Compile Include="Feedback\IFeedbackService.cs" />
+    <Compile Include="Feedback\IFeedbackTuple.cs" />
     <Compile Include="IAPNS.cs" />
     <Compile Include="Connection\IAPNSConnection.cs" />
-    <Compile Include="ISimpleNotification.cs" />
+    <Compile Include="Connection\ErrorResponseStatusCode.cs" />
+    <Compile Include="Notifications\ISimpleNotification.cs" />
     <Compile Include="IPayload.cs" />
+    <Compile Include="Notifications\EnhancedNotification.cs" />
+    <Compile Include="Notifications\IEnhancedNotification.cs" />
+    <Compile Include="Notifications\INotification.cs" />
     <Compile Include="PayloadAlertMessage.cs" />
-    <Compile Include="SimpleNotification.cs" />
+    <Compile Include="Notifications\SimpleNotification.cs" />
     <Compile Include="Payload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Connection\SandboxGatewayConnection.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

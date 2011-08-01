@@ -20,11 +20,14 @@
 namespace libAPNs
 {
     using System;
+    using System.IO;
+    using System.Linq;
     using System.Text.RegularExpressions;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [Serializable]
     public struct DeviceToken
     {
         private readonly string tokenData;
@@ -75,6 +78,24 @@ namespace libAPNs
             }
 
             return data;
+        }
+
+        /// <summary>
+        /// Deserializes a value and recreates an original serialized DeviceToken object
+        /// </summary>
+        /// <param name="tokenBytes"></param>
+        /// <returns></returns>
+        public static DeviceToken FromBinary(byte[] tokenBytes)
+        {
+            // BitConvert.ToBytes returns a hex string in uppercase with dashes between "bytes"
+            var token = BitConverter.ToString(tokenBytes).Replace("-", string.Empty).ToLower();
+
+            return new DeviceToken(token);
+        }
+
+        public override string ToString()
+        {
+            return this.tokenData;
         }
     }
 }

@@ -17,14 +17,23 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-namespace libAPNs
+namespace libAPNs.Exceptions
 {
-    using Connection;
-    using Notifications;
+    using System;
 
-    public interface IAPNS
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class NotificationException : Exception
     {
-        void SendSimpleNotification(ISimpleNotification simpleNotification);
-        IErrorResponse SendEnhancedNotification(IEnhancedNotification enhancedNotification);
+        public NotificationException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
+        public NotificationException(string message)
+            : base(message)
+        {
+        }
     }
 }

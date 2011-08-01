@@ -20,13 +20,19 @@
 namespace libAPNs.Connection
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Represents a secure connection to APNs
     /// </summary>
     internal interface IAPNSConnection
     {
+        bool CanRead { get; }
+
         void Connect();
 
         void Disconnect();
+
+        int Read(byte[] buffer, int offset, int count);
+
+        int ReadByte();
 
         void Write(byte[] data);
 

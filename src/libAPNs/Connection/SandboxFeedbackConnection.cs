@@ -17,14 +17,22 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-namespace libAPNs
+namespace libAPNs.Connection
 {
-    using Connection;
-    using Notifications;
+    using System.Security.Cryptography.X509Certificates;
 
-    public interface IAPNS
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    internal class SandboxFeedbackConnection : APNSConnection
     {
-        void SendSimpleNotification(ISimpleNotification simpleNotification);
-        IErrorResponse SendEnhancedNotification(IEnhancedNotification enhancedNotification);
+        internal const string Feedback_Sandbox_Host = "feedback.sandbox.push.apple.com";
+        internal const int Feedback_Sandbox_Port = 2196;
+
+        public SandboxFeedbackConnection(X509Certificate2 certificate) : base(certificate)
+        {
+            this.host = Feedback_Sandbox_Host;
+            this.port = Feedback_Sandbox_Port;
+        }
     }
 }

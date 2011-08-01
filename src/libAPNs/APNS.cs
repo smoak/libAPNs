@@ -19,12 +19,11 @@
 // THE SOFTWARE.
 namespace libAPNs
 {
+    using System;
     using System.Security.Cryptography.X509Certificates;
     using Connection;
+    using Notifications;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public class APNS : IAPNS
     {
         private readonly X509Certificate2 certificate;
@@ -45,6 +44,24 @@ namespace libAPNs
             {
                 this.connection = new GatewayConnection(this.certificate);
             }
+        }
+
+        public IErrorResponse SendEnhancedNotification(IEnhancedNotification enhancedNotification)
+        {
+            this.connection.Connect();
+            this.connection.Write(enhancedNotification.ToByteArray());
+            var response = new byte[6];
+            this.connection.Read(response, 0, response.Length);
+            this.connection.Disconnect();
+            IErrorResponse errorResponse = null;
+
+            if (response[0] == 0x08)
+            {
+                // we received an error response...
+                errorResponse = new ErrorResponse(BitConverter.ToInt32(response, 2), (ErrorResponseStatusCode) response[1]);
+            }
+
+            return errorResponse;
         }
 
         public void SendSimpleNotification(ISimpleNotification simpleNotification)

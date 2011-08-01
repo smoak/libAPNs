@@ -17,14 +17,28 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-namespace libAPNs
+namespace libAPNs.Notifications
 {
-    using Connection;
-    using Notifications;
+    using System;
 
-    public interface IAPNS
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public interface IEnhancedNotification : INotification
     {
-        void SendSimpleNotification(ISimpleNotification simpleNotification);
-        IErrorResponse SendEnhancedNotification(IEnhancedNotification enhancedNotification);
+        /// <summary>
+        /// An arbitrary value that identifies this notification. 
+        /// This same identifier is returned in a error-response packet 
+        /// if APNs cannot interpret a notification.
+        /// </summary>
+        uint Identifier { get; }
+
+        /// <summary>
+        ///  Identifies when the notification is no longer valid and can be discarded. 
+        ///  If set, APNs tries to deliver the notification at least once. 
+        ///  If not set, APNs will not store the notification at all.
+        ///  This should be based off of a fixed unix epoch date (UTC)
+        /// </summary>
+        TimeSpan? Expiry { get; }
     }
 }

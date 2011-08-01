@@ -17,7 +17,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-namespace libAPNs
+namespace libAPNs.Notifications
 {
     using System.IO;
     using System.Net;
@@ -28,6 +28,7 @@ namespace libAPNs
     public class SimpleNotification : ISimpleNotification
     {
         internal const byte COMMAND_BYTE = 0;
+
         private readonly IPayload payload;
 
         private DeviceToken deviceToken;
