@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="fastJSON">
-      <HintPath>..\..\lib\fastJSON.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,6 +52,7 @@
     <Compile Include="Connection\IAPNSConnection.cs" />
     <Compile Include="ISimpleNotification.cs" />
     <Compile Include="IPayload.cs" />
+    <Compile Include="PayloadAlertMessage.cs" />
     <Compile Include="SimpleNotification.cs" />
     <Compile Include="Payload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

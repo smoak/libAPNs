@@ -17,23 +17,27 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-namespace libAPNs
+namespace libAPNs.Test.Unit
 {
-    using System.Collections.Generic;
+    using NUnit.Framework;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public interface IPayload
+    [TestFixture]
+    public class PayloadTest
     {
-        PayloadAlertMessage Alert { get; }
+        [Test]
+        public void ToJson_should_return_correct_json()
+        {
+            // Arrange
+            var p = new Payload(new PayloadAlertMessage("test"), 1, "custom.wav");
 
-        int Badge { get; }
+            // Act
+            var json = p.ToJson();
 
-        IDictionary<string, object[]> CustomProperties { get; }
-
-        string Sound { get; }
-
-        string ToJson();
+            // Assert
+            Assert.AreEqual("{\"aps\":{\"alert\":\"test\",\"badge\":1,\"sound\":\"custom.wav\"}}", json);
+        }
     }
 }
