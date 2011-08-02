@@ -21,6 +21,7 @@ namespace libAPNs.Notifications
 {
     using System.IO;
     using System.Net;
+    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -60,14 +61,14 @@ namespace libAPNs.Notifications
             var memoryStream = new MemoryStream();
             var tokenBytes = this.deviceToken.ToByteArray();
             var payloadJson = this.payload.ToJson();
-
+            var payloadBytes = Encoding.UTF8.GetBytes(payloadJson);
             using (var writer = new BinaryWriter(memoryStream))
             {
                 writer.Write(COMMAND_BYTE);
                 writer.Write((ushort) IPAddress.HostToNetworkOrder((short) tokenBytes.Length));
                 writer.Write(tokenBytes);
-                writer.Write((ushort) IPAddress.HostToNetworkOrder((short) payloadJson.Length));
-                writer.Write(payloadJson);
+                writer.Write((ushort)IPAddress.HostToNetworkOrder((short)payloadBytes.Length));
+                writer.Write(payloadBytes);
             }
 
             return memoryStream.ToArray();
